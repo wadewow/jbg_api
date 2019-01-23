@@ -1,6 +1,6 @@
 # coding:utf-8
 from common.request_API import Access
-from common.get_EXCEL_test_data import *
+from common.get_EXCEL_test_data import GetExcelData
 import json
 
 
@@ -10,7 +10,7 @@ class TradeList:
         :param api_name: like --> 'MyTradeList'
         """
         self.response_list = []
-        data_list = post_excel_test_data(api_name)
+        data_list = GetExcelData(api_name).post_excel_test_data()
         for i in data_list:
             check_point = json.loads(i.pop('check_point'))
             response = Access(api_name, **i).post()
